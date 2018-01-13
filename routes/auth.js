@@ -47,7 +47,6 @@ router.post('/register', function(req, res, next){
     user.setPassword(req.body.password);
     user.save(function (err){
       if(err){ return res.status(500).json(err); }
-      invite.remove();
       return res.json({token: user.generateJWT()});
     });
   });
