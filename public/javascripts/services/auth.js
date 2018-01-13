@@ -99,5 +99,11 @@ app.factory('Auth', ['$http', '$window', '$rootScope', function($http, $window, 
     $rootScope.$broadcast('userLoggedOut');
   };
 
+  auth.updateProfile = function(userDetails) {
+    return $http.put('/api/update-profile', userDetails).then(function(data){
+      return data.data;
+    });
+  };
+
   return auth;
 }])

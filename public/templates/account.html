@@ -40,6 +40,7 @@
  <div class="hole_max wow fadeInLeft"> 
  <div class="section_vertical"> 
   <div class="section_one"> 
+      <h3>{{ctrl.message}}</h3>
   <form class="form-horizontal doctorregister" role="form">               
                
 				<div class="form-group row">
@@ -84,8 +85,8 @@
                 
                 <div class="login_btn">
          <div class="two_btn">
-          <a type="submit" value="Submit" class="login_button changepassword">Submit</a>
-          <a type="reset" value="Reset" class="login_button resetpassword">Reset</a>
+          <a type="submit" value="Submit" class="login_button changepassword" ng-click="ctrl.updateProfile()">Submit</a>
+          <!-- <a type="reset" value="Reset" class="login_button resetpassword">Reset</a> -->
          </div>
     </div>
             </form> <!-- /form -->

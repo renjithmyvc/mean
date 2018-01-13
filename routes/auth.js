@@ -73,6 +73,38 @@ router.post('/login', function(req, res, next){
   })(req, res, next);
 });
 
+/**
+ * Returns current user's updated details.
+ */
+router.put('/update-profile', auth, function(req, res, next) {
+  var userPayload = req.payload;
+  var user = {};
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
+  user.email = req.body.email;
+  user.phoneNumber = req.body.phoneNumber;
+  user.address = req.body.address;
+  if (req.body.password) {
+    user.setPassword(req.body.password);
+  }
+  if (userPayload) {
+    User.findOne({_id: userPayload._id}, function(err, userData) {
+      if (err) { return res.status(500).json(err); }
+      User.update({_id: userPayload._id}, user, function(err, u) {
+        if (err || !u) {
+          return res.status(500).json({ errors: {currentUser: {message: 'User details not updated.'}}})
+        }
+  
+        return res.json({token: userData.generateJWT()})
+      });
+    });
+    
+    
+  } else {
+    return res.status(400).json({ errors: {currentUser: {message: 'User not logged in.'}}});
+  }
+});
+
 
 /**
  * Gets user with Facebook id.

@@ -7,6 +7,16 @@ app.controller('AccountCtrl', ['Donation', 'Auth', '$http', function(Donation, A
     this.donations = donations;
   }.bind(this));
 
+  this.updateProfile = function() {
+    Auth.updateProfile(this.currentUser).then(function(data) {
+      Auth.saveToken(data.token);
+      this.message = 'User details updated successfully.';
+    }.bind(this)).catch(function(err) { 
+      this.message = '';
+      alert(err);
+    }.bind(this));
+  };
+
   this.invite = function() {
     if (!Auth.currentUser()) {
       return;
