@@ -21,11 +21,11 @@ app.controller('ResetPasswordCtrl', ['$routeParams', 'Auth', function ($routePar
       return;
     }
     this.user.token = this.token;
-    Auth.setPassword(this.user).error(function(res){
-      this.errors = res.errors;
-    }.bind(this)).then(function(res){
+    Auth.setPassword(this.user).then(function(res){
       this.passwordResetSuccess = true;
       this.message = res.data.message;
+    }.bind(this)).catch(function(res){
+      this.errors = res.errors;
     }.bind(this));
   };
 }]);
