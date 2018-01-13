@@ -15,7 +15,9 @@ var dbName = process.env.DB_NAME || 'scribecare';
 
 var dbURL = 'mongodb://'+dbHost+':'+dbPort+'/'+dbName;
 
-mongoose.connect(dbURL);
+mongoose.connect(dbURL,, {
+  useMongoClient: true
+});
 
 // models
 var user = require('./models/Users');
