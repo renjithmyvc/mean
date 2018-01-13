@@ -21,7 +21,7 @@ app.controller('AppCtrl', ["$scope", "Utils", "Auth", "$window", "$location",
     this.showLogin = false;
     if (!Auth.currentUser()) {
       if (['/sign-up'].indexOf(this.currentPath_) > -1) {
-        $location.path('/login');
+        $location.path('/');
       } else {
         $scope.$broadcast("showLoginForm");
         this.showLogin = true;
@@ -32,6 +32,7 @@ app.controller('AppCtrl', ["$scope", "Utils", "Auth", "$window", "$location",
   this.logOut = function() {
     Auth.logOut();
     this.currentUser = null;
+    $location.path('/');
   };
   
 }]);

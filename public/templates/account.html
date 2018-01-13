@@ -15,7 +15,7 @@
           <li><a href="examination.htm">Examination</a></li>
           <li><a href="reports.html">Reports</a></li>	
           <li><p class="welcomeadmin">Welcome Doctor</p></li>		  
-          <li class="profile_dropdwon"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><img src="noimage.png" class="defaultimage"> <span><b class="caret"></b></span></a> 
+          <li class="profile_dropdwon dropdown"><a class="dropdown-toggle" type="button" data-toggle="dropdown"><img src="noimage.png" class="defaultimage"> <span><b class="caret"></b></span></a> 
            <ul class="dropdown-menu">
 		    <li><a href="profile.html">Profile</a></li>
             <li><a href="changepassword.html">Change Password</a></li>
@@ -51,7 +51,7 @@
                 <div class="form-group row">
                     <label for="email" class="col-sm-3 control-label use">Email Address</label>
                     <div class="col-sm-9">
-                        <input type="email" id="email" placeholder="Email" class="form-control" ng-model="ctrl.currentUser.email">
+                        <input type="email" id="emailfield" placeholder="Email" class="form-control" ng-model="ctrl.currentUser.email">
                     </div>
                 </div>
 				<div class="form-group row">

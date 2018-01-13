@@ -53,7 +53,8 @@ UserSchema.methods.generateJWT = function() {
     exp: parseInt(exp.getTime() / 1000),
     approvedYenom: this.approvedYenom,
     pendingYenom: this.pendingYenom,
-    inviteCount: this.inviteCount
+    inviteCount: this.inviteCount,
+    phoneNumber: this.phoneNumber
   }, 'SECRET');
 };
 

@@ -43,58 +43,58 @@ app.factory('Auth', ['$http', '$window', '$rootScope', function($http, $window, 
 
   auth.getUserToken = function() {
     if (auth.currentUser()) {
-      return $http.post('/api/me').success(function(data) {
-        auth.saveToken(data.token);
+      return $http.post('/api/me').then(function(data) {
+        auth.saveToken(data.data.token);
       });
     }
   };
 
   auth.register = function(user){
-    return $http.post('/api/register', user).success(function(data){
-      auth.saveToken(data.token);
+    return $http.post('/api/register', user).then(function(data){
+      auth.saveToken(data.data.token);
     });
   };
 
   auth.logIn = function(user){
-    return $http.post('/api/login', user).success(function(data){
-      auth.saveToken(data.token);
+    return $http.post('/api/login', user).then(function(data){
+      console.log(data);
+      auth.saveToken(data.data.token);
     });
   };
 
   auth.providerUser = function(facebookUserId, provider){
     var data = {};
     data['facebookUserId'] =  facebookUserId;
-    return $http.post('/api/' + provider + '/user', data).success(function(data){
-      auth.saveToken(data.token);
+    return $http.post('/api/' + provider + '/user', data).then(function(data){
+      auth.saveToken(data.data.token);
     });
   };
 
   auth.registerWithFacebook = function(user) {
-    return $http.post('/api/login/facebook', user).success(function(data){
-      auth.saveToken(data.token);
+    return $http.post('/api/login/facebook', user).then(function(data){
+      auth.saveToken(data.data.token);
     });
   }
 
   auth.invite = function(inviteDetails) {
-    return $http.post('/api/invite', inviteDetails).success(function(data){
+    return $http.post('/api/invite', inviteDetails).then(function(data){
       return data;
     });
   };
 
   auth.forgotPassword = function(email) {
-    return $http.post('/api/forgot-password', email).success(function(data){
+    return $http.post('/api/forgot-password', email).then(function(data){
       return data;
     });
   };
 
   auth.setPassword = function(userDetails) {
-  return $http.post('/api/set-password', userDetails).success(function(data){
+  return $http.post('/api/set-password', userDetails).then(function(data){
       return data;
     });
   };
 
   auth.logOut = function(){
-    console.log('logout');
     $window.localStorage.removeItem('auth-token');
     $rootScope.$broadcast('userLoggedOut');
   };

@@ -71,12 +71,12 @@ app.controller('SignUpCtrl', ['$location', '$scope', '$window', '$routeParams', 
    * Register user.
    */
   this.register = function(){
-    Auth.register(this.user).error(function(res){
+    Auth.register(this.user).then(function(){
+      $location.url('/account');
+    }).catch(function(res){
       this.errors = res.errors;
       console.log(this.errors);
-    }.bind(this)).then(function(){
-      $location.url('/account');
-    });
+    }.bind(this));
   };
 
   /**
@@ -86,11 +86,11 @@ app.controller('SignUpCtrl', ['$location', '$scope', '$window', '$routeParams', 
     this.user.firstName = undefined;
     this.user.lastName = undefined;
     this.user.inviteCode = undefined;
-    Auth.logIn(this.user).error(function(res){
-      this.errors = res.errors;
-    }.bind(this)).then(function(){
+    Auth.logIn(this.user).then(function(){
       $location.url('/account');
-    });
+    }).catch(function(res){
+      this.errors = res.errors;
+    }.bind(this));
   };
 
   /**
@@ -103,7 +103,7 @@ app.controller('SignUpCtrl', ['$location', '$scope', '$window', '$routeParams', 
       var facebookUserId = response.authResponse.userID;
       Auth.providerUser(facebookUserId, 'facebook').then(function() {
         $location.url('/account');
-      }, function(res) {
+      }).catch(function(res) {
         this.hideFbLoginBtn = true;
       }.bind(this));
       $scope.$apply();
@@ -127,11 +127,11 @@ app.controller('SignUpCtrl', ['$location', '$scope', '$window', '$routeParams', 
     } else {
       this.errors = null;
     }
-    Auth.registerWithFacebook(this.user).error(function(res){
-      this.errors = res.errors;
-    }.bind(this)).then(function(){
+    Auth.registerWithFacebook(this.user).then(function(){
       $location.url('/account');
-    });
+    }).catch(function(res){
+      this.errors = res.errors;
+    }.bind(this));
   };
 
   /**
@@ -141,12 +141,12 @@ app.controller('SignUpCtrl', ['$location', '$scope', '$window', '$routeParams', 
     this.sendingInvite = true;
     this.message = null;
     this.error = null;
-    Auth.invite(this.invite).error(function(res){
-      this.error = res.message;
-      this.sendingInvite = false;
-    }.bind(this)).then(function(res){
+    Auth.invite(this.invite).then(function(res){
       this.invite = {};
       this.message = res.data.message;
+      this.sendingInvite = false;
+    }.bind(this)).catch(function(res){
+      this.error = res.message;
       this.sendingInvite = false;
     }.bind(this));
   };
@@ -158,12 +158,12 @@ app.controller('SignUpCtrl', ['$location', '$scope', '$window', '$routeParams', 
     this.sendingInstructions = true;
     this.message = null;
     this.error = null;
-    Auth.forgotPassword(this.forgot).error(function(res){
-      this.error = res.message;
-      this.sendingInstructions = false;
-    }.bind(this)).then(function(res){
+    Auth.forgotPassword(this.forgot).then(function(res){
       this.forgot = {};
       this.message = res.data.message;
+      this.sendingInstructions = false;
+    }.bind(this)).catch(function(res){
+      this.error = res.message;
       this.sendingInstructions = false;
     }.bind(this));
   };
