@@ -84,11 +84,13 @@ router.put('/update-profile', auth, function(req, res, next) {
   user.email = req.body.email;
   user.phoneNumber = req.body.phoneNumber;
   user.address = req.body.address;
-  if (req.body.password) {
-    user.setPassword(req.body.password);
-  }
+  
   if (userPayload) {
     User.findOne({_id: userPayload._id}, function(err, userData) {
+      if (req.body.password) {
+        userData.setPassword(req.body.password);
+        userData.save();
+      }
       if (err) { return res.status(500).json(err); }
       User.update({_id: userPayload._id}, user, function(err, u) {
         if (err || !u) {
