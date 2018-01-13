@@ -43,6 +43,10 @@ app.config(['$routeProvider', function($routeProvider){
     .otherwise({redirectTo:'/'});
 }]);
 
+app.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.hashPrefix('');
+}]);
+
 app.run(['$rootScope', 'Auth', '$location', '$http', function($rootScope, Auth, $location, $http) {
 
   $rootScope.$on('$routeChangeStart', function(event, next, prev) {
