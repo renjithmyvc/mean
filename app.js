@@ -9,7 +9,13 @@ var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/yenom');
+var dbHost = process.env.DB_HOST || 'localhost'
+var dbPort = process.env.DB_PORT || 27017;
+var dbName = process.env.DB_NAME || 'scribecare';
+
+var dbURL = 'mongodb://'+dbHost+':'+dbPort+'/'+dbName;
+
+mongoose.connect(dbURL);
 
 // models
 var user = require('./models/Users');
