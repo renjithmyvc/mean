@@ -14,7 +14,7 @@ var dbPort = process.env.DB_PORT || 27017;
 var dbName = process.env.DB_NAME || 'scribecare';
 
 // var dbURL = 'mongodb://'+dbHost+':'+dbPort+'/'+dbName;
-var dbURL = process.env.MONGODB_URI;
+var dbURL = process.env.MONGODB_URI || ('mongodb://'+dbHost+':'+dbPort+'/'+dbName);
 
 mongoose.connect(dbURL, {
   useMongoClient: true

@@ -1,83 +1,175 @@
-<section class="account">
-  <div class="content-header">
+<div class="header_landing_page wow fadeInDown">
+  <div class="container">
     <div class="row">
-      <div class="col col-sm-6 col-md-6 approved">
-        <h3 class="vag-bold"> APPROVED YENOM</h3>
-        <div class="row">
-          <div class="yenom-amount">
-            <img src="images/yenom.png" />{{appCtrl.currentUser.approvedYenom || 0}}
-          </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="logo"><h1><a href="#">Logo</a></h1></div>
+      </div>
+      <div class="col-sm-10 col-xs-6">
+        <div class="navbar navbar-default menu_n">
+<div class="navbar-header">
+<span class="main_text_menu">Menu </span>
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
+<div class="navbar-collapse collapse">
+        <div class="navmenus">
+          <ul>
+          <li><a href="examination.htm">Examination</a></li>
+          <li><a href="reports.html">Reports</a></li>	
+          <li><p class="welcomeadmin">Welcome Doctor</p></li>		  
+          <li class="profile_dropdwon"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><img src="noimage.png" class="defaultimage"> <span><b class="caret"></b></span></a> 
+           <ul class="dropdown-menu">
+		    <li><a href="profile.html">Profile</a></li>
+            <li><a href="changepassword.html">Change Password</a></li>
+            <li><a href="doctor_login.htm">Logout</a></li>
+           </ul> 
+          </li>
+		  <li id="date"></li>
+		  </ul>
         </div>
       </div>
-      <div class="col col-sm-6 col-md-6 pending">
-        <h3 class="vag-bold"> PENDING YENOM</h3>
-        <div class="row">
-          <div class="yenom-amount">
-            <img src="images/yenom.png" />{{appCtrl.currentUser.pendingYenom || 0}}
-          </div>
-        </div>
       </div>
+      </div>
+      </div>  
     </div>
-  </div>
-  <div class="main-content">
-    <div class="row text-center">
-      <h4 ng-if="ctrl.inviteSuccess" class="text-success"> Invite code will  be mailed to the email. </h4>
-      <form class="form-inline" ng-if="appCtrl.currentUser.inviteCount < 5">
-        <h4 ng-if="ctrl.currentUser.email && (ctrl.currentUser.email == ctrl.inviteEmail)" class="text-danger">
-          You can't invite yourself.
-        </h4>
-        <h6>You have invited {{appCtrl.currentUser.inviteCount}}/5.</h6>
-        <div class="form-group">
-          <input class="form-control" type="email" placeholder="Email to invite" validate-email ng-model="ctrl.inviteEmail"/>
-          <button class="btn btn-default" ng-disabled="!ctrl.inviteEmail || (ctrl.inviteEmail && (ctrl.currentUser.email == ctrl.inviteEmail))" ng-click="ctrl.invite()">Invite</button>
-        </div>
-      </form>
-    </div>
-    <div class="row text-center heading"><h3 class="text-brown">Charities Donated To</h3></div>
-    <div class="datatable">
-      <div class="headers">
-        <div class="column">Name</div>
-        <div class="column">Charity</div>
-        <div class="column">amount</div>
-        <div class="column">date</div>
-      </div>
-      <!--<div class="headers data top" ng-if="ctrl.userTopDonation">
-        <div class="column">{{ctrl.userTopDonation._user.firstName}}</div>
-        <div class="column"><a ng-href="/#/charities/{{ctrl.userTopDonation._charity.slug}}">{{ctrl.userTopDonation._charity.name}}</a></div>
-        <div class="column"><a ng-href="/#/{{ctrl.userTopDonation.receiptNumber}}/receipt" title="Show Receipt">{{ctrl.userTopDonation.amount}}</a></div>
-        <div class="column">{{ctrl.userTopDonation.date | date: "dd/MM/yyyy"}}</div>
-      </div>-->
-      <div class="headers data donations-list">
-        <div ng-repeat="donation in ctrl.donations">
-          <div class="column">{{donation._user.firstName}}</div>
-          <div class="column"><a ng-href="/#/charities/{{donation._charity.slug}}">{{donation._charity.name}}</a></div>
-          <div class="column"><a ng-href="/#/{{donation.receiptNumber}}/receipt" title="Show Receipt">{{donation.amount}}</a></div>
-          <div class="column">{{donation.date | date: "dd/MM/yyyy"}}</div>
-        </div>
-      </div>
-    </div>
+  </div>  
+</div>
 
-    <h3 class="text-center text-brown"> Transactions </h3>
-    <div class="transactions">
-      <div class="datatable">
-        <div class="headers">
-          <div class="column">Item</div>
-          <div class="column">Yenom generated</div>
-          <div class="column">date</div>
-          <div class="column">store</div>
-          <div class="column">status</div>
-        </div>
-        <div class="headers data transactions-list">
-          
-            <div class="column">Item</div>
-            <div class="column">200</div>
-            <div class="column">30/08/16</div>
-            <div class="column">Flipkart</div>
-            <div class="column">Pending</div>
-          
-        </div>
-      </div>
+<!-- content --> 
+<div class="sign_in">
+ <div class="container">
+  <div class="row">
+ <div class="hole_max wow fadeInLeft"> 
+ <div class="section_vertical"> 
+  <div class="section_one"> 
+  <form class="form-horizontal doctorregister" role="form">               
+               
+				<div class="form-group row">
+                    <label for="doctorname" class="col-sm-3 control-label use">Doctor Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="username" placeholder="" class="form-control" ng-model="ctrl.currentUser.firstName">                       
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-3 control-label use">Email Address</label>
+                    <div class="col-sm-9">
+                        <input type="email" id="email" placeholder="Email" class="form-control" ng-model="ctrl.currentUser.email">
+                    </div>
+                </div>
+				<div class="form-group row">
+                    <label for="phone" class="col-sm-3 control-label use">Phone Number</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="phone" placeholder="" class="form-control" ng-model="ctrl.currentUser.phoneNumber">                       
+                    </div>
+                </div>
+				<div class="form_group row">
+					<label for="address" class="col-sm-3 control-label use">Address</label>
+					<div class="col-sm-9">
+						<textarea name="address" placeholder="" class="form-control" rows="5" id="comment"> </textarea>
+				    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-3 control-label use">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="password" placeholder="Password" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="profileimage" class="col-sm-3 control-label use">Profile Image</label>
+                    <div class="col-sm-9">
+                        <input type="file" id="profileimage" placeholder="" class="form-control" >                       
+                    </div>
+                </div>
+                
+                
+                
+                <div class="login_btn">
+         <div class="two_btn">
+          <a type="submit" value="Submit" class="login_button changepassword">Submit</a>
+          <a type="reset" value="Reset" class="login_button resetpassword">Reset</a>
+         </div>
+    </div>
+            </form> <!-- /form -->
+ 
   </div>
+  
+</div>
+</div>
+  </div>
+ </div>
+</div>
+<!-- end -->
 
+<div class="footer  wow fadeInUp">
+  <div class="container">
+    <div class="row">
+       <div class="col-sm-3">
+	   </div>
+      <div class="col-sm-12">
+        <p class="footer_content">Copyright 2017.All Rights Reserved.</p>		
+      </div> 
+	  
+    </div>
   </div>
-</section>
+</div>
+
+
+
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+
+        $(document).ready(function(){
+        wow = new WOW(
+        {
+        boxClass:     'wow',      // default
+        animateClass: 'animated', // default
+        offset:       0,          // default
+        mobile:       true,       // default
+        live:         true        // default
+        }
+        )
+        wow.init();
+        });
+</script>
+
+<script type="text/javascript">
+            function updateTime() {
+            var currentTime = new Date();
+			var n =  new Date();
+			 var y = n.getFullYear();
+			 var m = n.getMonth() + 1;
+			 var d = n.getDate();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+            if(hours<10)
+            {
+            hours = "0" + hours;
+            }
+            if (minutes < 10){
+            minutes = "0" + minutes;
+            }
+            if (seconds < 10){
+            seconds = "0" + seconds;
+            }
+            var v = m + "/" + d + "/" + y + ' ' + hours + ":" + minutes + ":" + seconds + " ";
+            if(hours > 11){
+            v+="PM";
+            } else {
+            v+="AM"
+            }
+            setTimeout("updateTime()",1000);
+            document.getElementById('date').innerHTML=v;
+            }
+            updateTime();
+            //-->
+        </script>
+		<style>
+		
+		.footer.all_cm.wow.fadeInUp {
+    margin-top: 35px;
+}
+</style>
