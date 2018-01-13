@@ -1,0 +1,131 @@
+<div class="login_form" ng-controller="SignUpCtrl as ctrl">
+ 
+<!-- header --> 
+ <div class="header wow fadeInDown">
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-3">
+        <div class="logo"><h1><a href="#">Logo</a></h1></div>
+    </div>
+	<div class="col-sm-9">  
+		<div class="logo">
+		 <h1><a href="">Register</a></h1>
+		</div>
+	</div>
+   </div>
+  </div>
+ </div>
+<!-- end -->
+
+<!-- content --> 
+<div class="sign_in">
+ <div class="container">
+  <div class="row">
+ <div class="hole_max wow fadeInLeft"> 
+ <div class="section_vertical"> 
+  <div class="section_one" ng-init="ctrl.authMode = 'sign-up'"> 
+  <form class="form-horizontal doctorregister" role="form" name="signUpForm">               
+                <div class="form-group" ng-init="ctrl.form=signUpForm">
+                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="firstName" ng-model="ctrl.user.firstName" placeholder="" class="form-control" >                       
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="lastName" ng-model="ctrl.user.lastName" placeholder="" class="form-control" >                       
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label for="userid" class="col-sm-3 control-label">User Id</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="userid" placeholder="" class="form-control" ng-model="ctrl.user.userId" >                       
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-3 control-label">Email Address</label>
+                    <div class="col-sm-9">
+                        <input type="email" id="email" validate-email  placeholder="Email" class="form-control" ng-model="ctrl.user.email">
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label for="phone" class="col-sm-3 control-label">Mobile Number</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="phone" placeholder="" class="form-control"  accept-number ng-model="ctrl.user.phoneNumber" >                       
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="password"  name="passwordField" placeholder="Password" ng-model="ctrl.user.password"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cpassword" class="col-sm-3 control-label"> Confirm Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="cpassword" placeholder="Password" class="form-control" ng-model="ctrl.user.confirmPassword" > 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profileimage" class="col-sm-3 control-label">Profile Image</label>
+                    <div class="col-sm-9">
+                        <input type="file" id="profileimage" placeholder="" class="form-control" >                       
+                    </div>
+                </div>
+                
+                
+                
+                <div class="login_btn">
+   <div class="two_btn">
+    <button class="login_button register" ng-click="ctrl.signIn()">Register</button>
+    <a class="logut_button" ng-href="#/">Login</a>
+   </div>
+  </div>
+            </form> <!-- /form -->
+   
+   
+   
+  </div>
+ 
+</div>
+</div>
+  </div>
+ </div>
+</div>
+<!-- end -->
+
+<!-- footer -->
+ <div class="footer  wow fadeInUp">
+  <div class="container">
+    <div class="row">  
+<div class="col-sm-3">
+ </div>	
+      <div class="col-sm-9">
+        <p class="footer_content">Copyright 2017.All Rights Reserved.</p>		
+      </div>	  
+    </div>
+  </div>
+</div>
+<!-- end -->
+
+</div>
+
+
+
+<script type="text/javascript">
+
+        $(document).ready(function(){
+        wow = new WOW(
+        {
+        boxClass:     'wow',      // default
+        animateClass: 'animated', // default
+        offset:       0,          // default
+        mobile:       true,       // default
+        live:         true        // default
+        }
+        )
+        wow.init();
+        });
+</script>
+

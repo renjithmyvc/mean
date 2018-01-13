@@ -1,0 +1,83 @@
+<section class="account">
+  <div class="content-header">
+    <div class="row">
+      <div class="col col-sm-6 col-md-6 approved">
+        <h3 class="vag-bold"> APPROVED YENOM</h3>
+        <div class="row">
+          <div class="yenom-amount">
+            <img src="images/yenom.png" />{{appCtrl.currentUser.approvedYenom || 0}}
+          </div>
+        </div>
+      </div>
+      <div class="col col-sm-6 col-md-6 pending">
+        <h3 class="vag-bold"> PENDING YENOM</h3>
+        <div class="row">
+          <div class="yenom-amount">
+            <img src="images/yenom.png" />{{appCtrl.currentUser.pendingYenom || 0}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="row text-center">
+      <h4 ng-if="ctrl.inviteSuccess" class="text-success"> Invite code will  be mailed to the email. </h4>
+      <form class="form-inline" ng-if="appCtrl.currentUser.inviteCount < 5">
+        <h4 ng-if="ctrl.currentUser.email && (ctrl.currentUser.email == ctrl.inviteEmail)" class="text-danger">
+          You can't invite yourself.
+        </h4>
+        <h6>You have invited {{appCtrl.currentUser.inviteCount}}/5.</h6>
+        <div class="form-group">
+          <input class="form-control" type="email" placeholder="Email to invite" validate-email ng-model="ctrl.inviteEmail"/>
+          <button class="btn btn-default" ng-disabled="!ctrl.inviteEmail || (ctrl.inviteEmail && (ctrl.currentUser.email == ctrl.inviteEmail))" ng-click="ctrl.invite()">Invite</button>
+        </div>
+      </form>
+    </div>
+    <div class="row text-center heading"><h3 class="text-brown">Charities Donated To</h3></div>
+    <div class="datatable">
+      <div class="headers">
+        <div class="column">Name</div>
+        <div class="column">Charity</div>
+        <div class="column">amount</div>
+        <div class="column">date</div>
+      </div>
+      <!--<div class="headers data top" ng-if="ctrl.userTopDonation">
+        <div class="column">{{ctrl.userTopDonation._user.firstName}}</div>
+        <div class="column"><a ng-href="/#/charities/{{ctrl.userTopDonation._charity.slug}}">{{ctrl.userTopDonation._charity.name}}</a></div>
+        <div class="column"><a ng-href="/#/{{ctrl.userTopDonation.receiptNumber}}/receipt" title="Show Receipt">{{ctrl.userTopDonation.amount}}</a></div>
+        <div class="column">{{ctrl.userTopDonation.date | date: "dd/MM/yyyy"}}</div>
+      </div>-->
+      <div class="headers data donations-list">
+        <div ng-repeat="donation in ctrl.donations">
+          <div class="column">{{donation._user.firstName}}</div>
+          <div class="column"><a ng-href="/#/charities/{{donation._charity.slug}}">{{donation._charity.name}}</a></div>
+          <div class="column"><a ng-href="/#/{{donation.receiptNumber}}/receipt" title="Show Receipt">{{donation.amount}}</a></div>
+          <div class="column">{{donation.date | date: "dd/MM/yyyy"}}</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-center text-brown"> Transactions </h3>
+    <div class="transactions">
+      <div class="datatable">
+        <div class="headers">
+          <div class="column">Item</div>
+          <div class="column">Yenom generated</div>
+          <div class="column">date</div>
+          <div class="column">store</div>
+          <div class="column">status</div>
+        </div>
+        <div class="headers data transactions-list">
+          
+            <div class="column">Item</div>
+            <div class="column">200</div>
+            <div class="column">30/08/16</div>
+            <div class="column">Flipkart</div>
+            <div class="column">Pending</div>
+          
+        </div>
+      </div>
+  </div>
+
+  </div>
+</section>

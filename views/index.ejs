@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Yenom">
+    <meta name="description" content="Yenom">
+
+    <!-- Mobile Stuff -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Yenom">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon.png">
+
+    <!-- Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Yenom">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+    <!-- Windows 8 -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+
+
+    <meta name="theme-color" content="#000000">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <title>Yenom</title>
+    <link rel="stylesheet" href="src/all.min.css"></link>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">  
+    <link href="src/all.min.css" rel="stylesheet">
+    <link href="stylesheets/animate.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/src/all.min.js"></script>  
+    <script type="text/javascript" src="/javascripts/js/wow.min.js"></script>
+  </head>
+  <body ng-app="app">
+    <ui-spinner>
+      <div id="spinner"></div>
+    </ui-spinner>
+    <div ng-controller="AppCtrl as appCtrl">
+      <!-- Template corresponding to the view -->
+      <div ng-view>
+      </div>
+    </div>
+    <script src="src/all.min.js"></script>
+  </body>
+</html>

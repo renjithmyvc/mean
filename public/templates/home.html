@@ -1,0 +1,121 @@
+
+
+<div class="login_form" ng-controller="SignUpCtrl as ctrl">
+ 
+<!-- header --> 
+ <div class="header wow fadeInDown" ng-init="ctrl.authMode = 'login'">
+  <div class="container">
+   <div class="row">
+   <div class="col-sm-3">
+        <div class="logo"><h1><a href="#">Logo</a></h1></div>
+    </div>
+	<div class="col-sm-9"> 
+    <div class="logo">
+     <h1><a href="">Doctor  Login</a></h1>
+    </div>
+	</div>
+   </div>
+  </div>
+ </div>
+<!-- end -->
+
+<!-- content --> 
+	<div class="sign_in">
+		<div class="container">
+			<div class="row">
+			    <div class="col-md-12">
+				    <div class="col-md-6">
+						<div class="hole_max wow fadeInRight"> 
+						    <div class="section_vertical"> 
+								<div class="section_ones"> 
+									<img src="images/doctor.jpg" class="img-responsive" alt="Doctor">
+							    </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="hole_max wow fadeInLeft"> 
+							<div class="section_vertical"> 							
+								<div class="section_one"> 
+								<form  name="signUpForm" class="form-horizontal" role="form">
+                <div class="form-group"  ng-init="ctrl.form=signUpForm">
+                    <label for="userid" class="col-sm-3 control-label use">User Id</label>
+                    <div class="col-sm-9" ng-class="{'has-error': signUpForm.email.$invalid}">
+                        <input type="email" id="email" placeholder="Email" class="form-control"
+                               ng-model="ctrl.user.email" ng-required="true">                        
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label use">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" name="passwordField"  id="password" ng-model="ctrl.user.password" placeholder="password" ng-required="true" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">Keep me signed in
+                            </label>
+                        </div>
+                    </div>
+                </div> <!-- /.form-group -->
+                <div class="login_btn">
+						   
+						   <div class="two_btn">
+							     <button class="login_button" ng-click="ctrl.signIn()">Login</button>    
+                           </div>
+						   <a class="forget_password firsttimeregister" href="" data-toggle="modal" data-target="#forgotPasswordModal">Forgot your User Id/Password? </a>
+						   <a class="forget_password firsttimeregister" ng-href="#/sign-up">First Time User Register Now </a>
+						  </div>
+            </form> 
+								   
+								
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- end -->
+
+<!-- footer -->
+ <div class="footer wow fadeInUp">
+  <div class="container">
+   <div class="row">
+    <div class="register_footer">
+     
+     <div class="col-sm-12">
+      <p class="footer_content">Copyright 2017.All Rights Reserved.</p>
+     </div>
+	 <div class="col-sm-3">
+     
+     </div>
+    </div>
+   </div>
+  </div>
+ </div> 
+<!-- end -->
+<ng-include src="'templates/forgot-password-modal.html'"></ng-include>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+        $(document).ready(function(){
+        wow = new WOW(
+        {
+        boxClass:     'wow',      // default
+        animateClass: 'animated', // default
+        offset:       0,          // default
+        mobile:       true,       // default
+        live:         true        // default
+        }
+        )
+        wow.init();
+        });
+</script>
