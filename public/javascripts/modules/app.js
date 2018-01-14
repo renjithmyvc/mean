@@ -40,6 +40,16 @@ app.config(['$routeProvider', function($routeProvider){
       requiredUser: true,
       resolve: resolveUserToken,
     })
+    .when('/examination', {
+      templateUrl: 'templates/examination.html',
+      requiredUser: true,
+      resolve: resolveUserToken,
+    })
+    .when('/reports', {
+      templateUrl: 'templates/reports.html',
+      requiredUser: true,
+      resolve: resolveUserToken,
+    })
     .otherwise({redirectTo:'/'});
 }]);
 

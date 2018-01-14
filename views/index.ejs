@@ -47,7 +47,7 @@
       <div id="spinner"></div>
     </ui-spinner>
     <div ng-controller="AppCtrl as appCtrl">
-      <a class="logout" ng-click="appCtrl.logOut()" ng-if="appCtrl.currentUser">Logout</a>
+      <ng-include src="'templates/header.html'"  ng-if="appCtrl.currentUser"></ng-include>
       <!-- Template corresponding to the view -->
       <div ng-view>
       </div>
