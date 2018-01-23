@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
+var fileUpload = require('express-fileupload');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -21,25 +22,16 @@ mongoose.connect(dbURL, {
 });
 
 // models
-var user = require('./models/Users');
-var invite = require('./models/Invites');
-var store = require('./models/Stores');
-var charity = require('./models/Charities');
-var donation = require('./models/Donations');
+var doctor = require('./models/Doctors');
+var scriber = require('./models/Scribers');
 // end of models
 
 var passport = require('passport');
 var passportConfig = require('./config/passport');
 var config = require('./config/config');
-var seeds = require('./config/seeds');
 
-var authentication = require('./routes/auth');
-var feedback = require('./routes/feedback');
-var userInvite = require('./routes/user-invites');
+var user = require('./routes/user');
 var index = require('./routes/index');
-var stores = require('./routes/stores');
-var charities = require('./routes/charities');
-var donations = require('./routes/donations');
 
 var app = express();
 var mailer = require('express-mailer');
@@ -58,14 +50,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
+app.use(fileUpload());
 
 app.use('/', index);
-app.use('/api/', authentication);
-app.use('/api/feedback', feedback);
-app.use('/api/userInvite', auth, userInvite);
-app.use('/api/stores', stores);
-app.use('/api/charities', charities);
-app.use('/api/donations', auth, donations);
+app.use('/api/doctors', user);
+app.use('/api/scribers', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

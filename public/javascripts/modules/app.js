@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngResource', 'ngSanitize', 'vcRecaptcha']);
+var app = angular.module('app', ['ngRoute', 'ngResource', 'ngSanitize']);
 
 var resolveUserToken = {
   token: ['Auth', function(Auth) {
@@ -15,25 +15,50 @@ var resolveUserToken = {
 
 app.config(['$routeProvider', function($routeProvider){
     $routeProvider
-    .when('/', {
+    .when('/doctors', {
       templateUrl: 'templates/home.html',
       controller: 'HomeCtrl',
       controllerAs: 'ctrl',
       requiredUser: false
     })
-    .when('/sign-up', {
+    .when('/doctors/sign-up', {
       templateUrl: 'templates/sign-up.html',
       requiredUser: false,
       redirectUrl: '/'
     })
-    .when('/reset-password', {
+    .when('/doctors/reset-password', {
       templateUrl: 'templates/reset-password.html',
       controller: 'ResetPasswordCtrl',
       controllerAs: 'resetPasswordCtrl',
       requiredUser: false,
       redirectUrl: '/'
     })
-    .when('/account', {
+    .when('/scribers', {
+      templateUrl: 'templates/home.html',
+      controller: 'HomeCtrl',
+      controllerAs: 'ctrl',
+      requiredUser: false
+    })
+    .when('/scribers/sign-up', {
+      templateUrl: 'templates/sign-up.html',
+      requiredUser: false,
+      redirectUrl: '/'
+    })
+    .when('/scribers/reset-password', {
+      templateUrl: 'templates/reset-password.html',
+      controller: 'ResetPasswordCtrl',
+      controllerAs: 'resetPasswordCtrl',
+      requiredUser: false,
+      redirectUrl: '/'
+    })
+    .when('/doctors/account', {
+      templateUrl: 'templates/account.html',
+      controller: 'AccountCtrl',
+      controllerAs: 'ctrl',
+      requiredUser: true,
+      resolve: resolveUserToken,
+    })
+    .when('/scribers/account', {
       templateUrl: 'templates/account.html',
       controller: 'AccountCtrl',
       controllerAs: 'ctrl',
@@ -50,7 +75,7 @@ app.config(['$routeProvider', function($routeProvider){
       requiredUser: true,
       resolve: resolveUserToken,
     })
-    .otherwise({redirectTo:'/'});
+    .otherwise({redirectTo:'/doctors'});
 }]);
 
 app.config(['$locationProvider', function($locationProvider) {
@@ -60,21 +85,18 @@ app.config(['$locationProvider', function($locationProvider) {
 app.run(['$rootScope', 'Auth', '$location', '$http', function($rootScope, Auth, $location, $http) {
 
   $rootScope.$on('$routeChangeStart', function(event, next, prev) {
-    document.querySelector('.modal-backdrop') &&
-        document.querySelector('.modal-backdrop').remove();
-    document.body.classList.remove('modal-open');
 
     // if token expired, call logout -> removes token from localstorage.
     if (Auth.isTokenExpired()) {
       event.preventDefault();
       Auth.logOut();
-      $location.url('/login');
+      $location.url('/doctors');
       return;
     }
     if (!Auth.isLoggedIn()) {
       if (next.$$route.requiredUser) {
         event.preventDefault();
-        $location.url('/');
+        $location.url('/doctors');
         return;
       }
     } else {

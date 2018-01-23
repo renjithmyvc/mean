@@ -1,6 +1,10 @@
 app.factory('Auth', ['$http', '$window', '$rootScope', function($http, $window, $rootScope){
   var auth = {};
 
+  auth.getRole = function() {
+    return $window.location.hash.includes('scribers') ? 'scribers' : 'doctors';
+  }
+
   auth.saveToken = function (token){
     $window.localStorage['auth-token'] = token;
     $rootScope.$broadcast('authTokenChanged', {token: token});
@@ -43,53 +47,32 @@ app.factory('Auth', ['$http', '$window', '$rootScope', function($http, $window, 
 
   auth.getUserToken = function() {
     if (auth.currentUser()) {
-      return $http.post('/api/me').then(function(data) {
+      return $http.post('/api/' + auth.getRole() + '/me').then(function(data) {
         auth.saveToken(data.data.token);
       });
     }
   };
 
   auth.register = function(user){
-    return $http.post('/api/register', user).then(function(data){
+    return $http.post('/api/' + auth.getRole() + '/register', user).then(function(data){
       auth.saveToken(data.data.token);
     });
   };
 
   auth.logIn = function(user){
-    return $http.post('/api/login', user).then(function(data){
-      console.log(data);
+    return $http.post('/api/' + auth.getRole() + '/login', user).then(function(data){
       auth.saveToken(data.data.token);
-    });
-  };
-
-  auth.providerUser = function(facebookUserId, provider){
-    var data = {};
-    data['facebookUserId'] =  facebookUserId;
-    return $http.post('/api/' + provider + '/user', data).then(function(data){
-      auth.saveToken(data.data.token);
-    });
-  };
-
-  auth.registerWithFacebook = function(user) {
-    return $http.post('/api/login/facebook', user).then(function(data){
-      auth.saveToken(data.data.token);
-    });
-  }
-
-  auth.invite = function(inviteDetails) {
-    return $http.post('/api/invite', inviteDetails).then(function(data){
-      return data;
     });
   };
 
   auth.forgotPassword = function(email) {
-    return $http.post('/api/forgot-password', email).then(function(data){
+    return $http.post('/api/' + auth.getRole() + '/forgot-password', email).then(function(data){
       return data;
     });
   };
 
   auth.setPassword = function(userDetails) {
-  return $http.post('/api/set-password', userDetails).then(function(data){
+  return $http.post('/api/' + auth.getRole() + '/set-password', userDetails).then(function(data){
       return data;
     });
   };
@@ -100,7 +83,7 @@ app.factory('Auth', ['$http', '$window', '$rootScope', function($http, $window, 
   };
 
   auth.updateProfile = function(userDetails) {
-    return $http.put('/api/update-profile', userDetails).then(function(data){
+    return $http.put('/api/' + auth.getRole() + '/update-profile', userDetails).then(function(data){
       return data.data;
     });
   };

@@ -42,7 +42,7 @@
                 <div class="form-group row">
                     <label for="profileimage" class="col-sm-3 control-label use">Profile Image</label>
                     <div class="col-sm-9">
-                        <input type="file" id="profileimage" placeholder="" class="form-control" >                       
+                        <input type="file" id="profileimage" placeholder="" class="form-control" file-model="ctrl.currentUser.profileImage" ng-model="ctrl.currentUser.profileImage"file-model="ctrl.currentUser.profileImage" ng-change="ctrl.uploadImage()">                       
                     </div>
                 </div>
                 
@@ -128,7 +128,9 @@
             v+="AM"
             }
             setTimeout("updateTime()",1000);
-            document.getElementById('date').innerHTML=v;
+            if (document.getElementById('date')) {
+                document.getElementById('date').innerHTML=v;
+            }
             }
             updateTime();
             //-->

@@ -12,6 +12,7 @@
     "del": "^2.2.1",
     "ejs": "~2.4.1",
     "express": "~4.13.4",
+    "express-fileupload": "^0.3.0",
     "express-jwt": "^3.4.0",
     "express-mailer": "^0.3.1",
     "gulp": "^3.9.1",
