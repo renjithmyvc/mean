@@ -85,7 +85,6 @@ app.config(['$locationProvider', function($locationProvider) {
 app.run(['$rootScope', 'Auth', '$location', '$http', function($rootScope, Auth, $location, $http) {
 
   $rootScope.$on('$routeChangeStart', function(event, next, prev) {
-
     // if token expired, call logout -> removes token from localstorage.
     if (Auth.isTokenExpired()) {
       event.preventDefault();
@@ -94,12 +93,12 @@ app.run(['$rootScope', 'Auth', '$location', '$http', function($rootScope, Auth, 
       return;
     }
     if (!Auth.isLoggedIn()) {
-      if (next.$$route.requiredUser) {
+      if (next.$$route && next.$$route.requiredUser) {
         event.preventDefault();
         $location.url('/doctors');
         return;
       }
-    } else {
+    } else if(next.$$route) {
       if (!next.$$route.requiredUser && next.$$route.redirectUrl) {
         event.preventDefault();
         $location.url(next.$$route.redirectUrl);
